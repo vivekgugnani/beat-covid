@@ -3,7 +3,7 @@ const request = require('request');
 const sgMail = require('@sendgrid/mail')
 const app = express();
 
-const url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=136135&date=19-05-2021";
+const url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=136135&date=20-05-2021";
 const sendgridAPIKey = process.env.SENDGRID_API_KEY;
 sgMail.setApiKey(sendgridAPIKey)
 setInterval(() => {
