@@ -1,0 +1,12 @@
+{
+  "name": "COWIN",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@sendgrid/mail": "^7.4.4",
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
+}
