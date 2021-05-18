@@ -14,6 +14,9 @@ setInterval(() => {
         if(error) {
             return console.log("i got some error")
         }
+        if(!body.sessions) {
+            return console.log('nothing found')
+        }
         if(body.sessions.length > 0 && body.sessions[0].min_age_limit == 18) {
             sgMail.send({
                 to: 'vivek.gugnani04@gmail.com',
