@@ -1,5 +1,6 @@
 const express = require('express');
 const request = require('request');
+const https = require('https');
 const sgMail = require('@sendgrid/mail')
 const app = express();
 
@@ -10,28 +11,38 @@ sgMail.setApiKey(sendgridAPIKey)
 
 app.use(express.json)
 setInterval(() => {
-    request({url , json:true}, (error, {body}) => {
-        if(error) {
-            return console.log("i got some error")
+    https.get(url, (res) => {
+        if(!(res.statusCode == 200)) {
+            return console.log(res.statusCode);
         }
-        // if(!body.sessions) {
-        //     return console.log('nothing found')
-        // }
-        console.log(body)
-        // if(body.sessions.length > 0 && body.sessions[0].min_age_limit == 18) {
-        //     sgMail.send({
-        //         to: 'vivek.gugnani04@gmail.com',
-        //         from: 'vivek0094.cse19@chitkara.edu.in',
-        //         subject: 'AA gya injection',
-        //         text:   'jldi se book  kro'
-        //     }).then(() => {
-        //         console.log('sent')
-        //     }).catch((e) => {
-        //         console.log(e)
-        //     })
-        //     console.log(body.sessions)
-        // }
+        res.on('data', (d) => {
+            process.stdout.write(d);
+        })
+    }).on('error', (e) => {
+        console.log(e)
     })
+    // request({url , json:true}, (error, {body}) => {
+    //     if(error) {
+    //         return console.log("i got some error")
+    //     }
+    //     // if(!body.sessions) {
+    //     //     return console.log('nothing found')
+    //     // }
+    //     console.log(body)
+    //     // if(body.sessions.length > 0 && body.sessions[0].min_age_limit == 18) {
+    //     //     sgMail.send({
+    //     //         to: 'vivek.gugnani04@gmail.com',
+    //     //         from: 'vivek0094.cse19@chitkara.edu.in',
+    //     //         subject: 'AA gya injection',
+    //     //         text:   'jldi se book  kro'
+    //     //     }).then(() => {
+    //     //         console.log('sent')
+    //     //     }).catch((e) => {
+    //     //         console.log(e)
+    //     //     })
+    //     //     console.log(body.sessions)
+    //     // }
+    // })
 },60000)
 
 app.get('/', (req, res) => {
