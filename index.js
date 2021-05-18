@@ -32,7 +32,7 @@ setInterval(() => {
         //     console.log(body.sessions)
         // }
     })
-},5000)
+},60000)
 
 app.get('/', (req, res) => {
     res.render({
